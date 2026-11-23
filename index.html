@@ -8,6 +8,7 @@
 /* Layout: 레퍼런스(1440px 기준) 실측값 그대로. 밝은 히어로(높이 930) → 회색 밴드(문구 + (01)(02)(03) 행) → 연락처.
    px 값은 1440 화면 기준, 그보다 좁으면 vw로 비례 축소 */
 @font-face{font-family:"Youandi Modern";src:url("fonts/fontYouandiModernTR.ttf") format("truetype");font-display:swap}
+@font-face{font-family:"Youandi Modern";src:url("fonts/YouandiModernHEB.ttf?v=2") format("truetype");font-weight:700;font-display:swap}
 :root{
   --hero:#f7f6f4; --band:#f1f1f1; --ink:#2b2b2b; --text:#3a3a3a; --soft:#cfcecc; --muted:#8a8a88; --line:#c9c9c7;
   --f:"Youandi Modern","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
@@ -33,7 +34,7 @@ nav .u{justify-self:end;font-size:21px;letter-spacing:-.04em}
 
 /* 히어로 */
 .hero{min-height:clamp(520px,59vw,850px);display:flex;flex-direction:column;padding-top:clamp(56px,16.1vw,232px);padding-bottom:clamp(24px,2.8vw,40px)}
-.hero h1{font-size:clamp(30px,5vw,72px);line-height:1;letter-spacing:-.055em;color:var(--ink)}
+.hero h1{font-weight:700;font-size:clamp(30px,5vw,72px);line-height:1;letter-spacing:-.055em;color:var(--ink)}
 .hero h1 .g{color:var(--soft)}
 .hero-foot{margin-top:auto;padding-top:48px;display:flex;justify-content:space-between;align-items:end;gap:20px}
 .hero-foot p{max-width:770px;font-size:clamp(16px,1.67vw,24px);line-height:1.29;letter-spacing:-.035em;color:#1e1e1e}
