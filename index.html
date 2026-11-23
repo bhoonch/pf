@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>조하람 조교 포트폴리오</title>
+<style>
+/* Layout: 레퍼런스(1440px 기준) 실측값 그대로. 밝은 히어로(높이 930) → 회색 밴드(문구 + (01)(02)(03) 행) → 연락처.
+   px 값은 1440 화면 기준, 그보다 좁으면 vw로 비례 축소 */
+@font-face{font-family:"Youandi Modern";src:url("fonts/fontYouandiModernTR.ttf") format("truetype");font-display:swap}
+:root{
+  --hero:#f7f6f4; --band:#f1f1f1; --ink:#2b2b2b; --text:#3a3a3a; --soft:#cfcecc; --muted:#8a8a88; --line:#c9c9c7;
+  --f:"Youandi Modern","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --gut:clamp(16px,2.78vw,40px);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--hero);color:var(--ink);font-family:var(--f);font-weight:400;font-synthesis:none;line-height:1.3;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.in{padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
+a{color:inherit}
+h1,h2,h3,p{margin:0;font-weight:400}
+.u{text-decoration:none;padding-bottom:3px;background:linear-gradient(currentColor,currentColor) 0 100%/100% 1.5px no-repeat;white-space:nowrap;transition:background-size .35s ease}
+.u:hover,.u:focus-visible{background-size:0 1.5px;background-position:100% 100%;outline:none}
+
+/* 상단바: 레퍼런스 20px → +1 */
+nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:80px}
+.logo{justify-self:start;background:#111;color:#fff;font-size:15px;line-height:1;padding:6px 8px;border-radius:4px;letter-spacing:-.02em}
+.links{display:flex;gap:35px;font-size:21px;letter-spacing:-.04em}
+.links a{text-decoration:none}
+.links sup{font-size:9px;letter-spacing:0;margin-right:4px;vertical-align:10px}
+.links a:hover,.links a:focus-visible{text-decoration:underline;outline:none}
+nav .u{justify-self:end;font-size:21px;letter-spacing:-.04em}
+
+/* 히어로 */
+.hero{min-height:clamp(520px,59vw,850px);display:flex;flex-direction:column;padding-top:clamp(56px,16.1vw,232px);padding-bottom:clamp(24px,2.8vw,40px)}
+.hero h1{font-size:clamp(30px,5vw,72px);line-height:1;letter-spacing:-.055em;color:var(--ink)}
+.hero h1 .g{color:var(--soft)}
+.hero-foot{margin-top:auto;padding-top:48px;display:flex;justify-content:space-between;align-items:end;gap:20px}
+.hero-foot p{max-width:770px;font-size:clamp(16px,1.67vw,24px);line-height:1.29;letter-spacing:-.035em;color:#1e1e1e}
+.hint{font-size:16px;letter-spacing:-.03em;white-space:nowrap}
+
+/* 회색 밴드 */
+.band{background:var(--band);padding-top:clamp(56px,6.5vw,93px);padding-bottom:clamp(64px,8.3vw,120px)}
+.eyebrow{font-size:clamp(14px,1.18vw,17px);letter-spacing:-.04em;color:var(--text)}
+.eyebrow::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor;margin-right:8px;vertical-align:3px}
+.eyebrow .g{color:#a9a9a7}
+.state{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-top:18px}
+.state h2{font-size:clamp(24px,4.03vw,58px);line-height:1.2;letter-spacing:-.05em;color:var(--ink)}
+.state .u{font-size:clamp(14px,1.25vw,18px);letter-spacing:-.04em;margin-bottom:.4em}
+
+.row{margin-top:clamp(56px,7vw,100px)}
+.row-num{font-size:clamp(17px,1.67vw,24px);letter-spacing:-.03em;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.row h3{font-size:clamp(24px,2.64vw,38px);line-height:1.1;letter-spacing:-.045em;margin-top:clamp(28px,3vw,42px)}
+.row-body{display:grid;grid-template-columns:minmax(0,58.8%) minmax(0,1fr) auto;margin-top:clamp(24px,2.6vw,38px);align-items:start}
+.row-body p{max-width:680px;font-size:clamp(15px,1.32vw,19px);line-height:1.42;letter-spacing:-.03em;color:var(--text)}
+.row-body ul{list-style:none;margin:0;padding:0;font-size:clamp(14px,1.11vw,16px);line-height:1.35;letter-spacing:-.035em;color:#444}
+.tag{font-size:clamp(14px,1.18vw,17px);letter-spacing:-.035em;white-space:nowrap;color:var(--text)}
+
+/* 연락 */
+.contact{background:#111;color:#fff;padding-top:clamp(56px,6.5vw,93px);padding-bottom:40px}
+.contact h2{font-size:clamp(24px,4.03vw,58px);line-height:1.2;letter-spacing:-.05em}
+.contact h2 .g{color:#5f5f5d}
+.c-row{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;margin-top:40px;font-size:clamp(15px,1.39vw,20px);letter-spacing:-.03em}
+.c-row .v{font-size:clamp(20px,1.8vw,26px);user-select:all}
+button{font:inherit;font-size:15px;background:#fff;color:#111;border:0;border-radius:999px;padding:9px 18px;cursor:pointer;transition:transform .15s ease}
+button:active{transform:scale(.96)}
+button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+#copied{font-size:14px;color:#9a9a96}
+.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:72px;font-size:14px;color:#8a8a86}
+
+/* 모션 */
+.ln{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.ln>span{display:inline-block}
+.hero .ln>span{animation:up 1s cubic-bezier(.2,.75,.1,1) both}
+.hero .ln:nth-child(2)>span{animation-delay:.14s}
+.hero-foot,nav{animation:fade .8s ease .45s both}
+@keyframes up{from{transform:translateY(105%)}to{transform:none}}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hint i{display:inline-block;font-style:normal;animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(3px)}}
+.rv{transition:transform .9s cubic-bezier(.2,.75,.1,1)}
+.rv.pre{transform:translateY(32px)}
+.ln>.rv.pre{transform:translateY(105%)}
+.row h3{transition:transform .35s ease}
+.row:hover h3{transform:translateX(8px)}
+
+@media (max-width:760px){
+  nav{grid-template-columns:1fr auto;height:64px}
+  .links{display:none}
+  nav .u{font-size:15px}
+  .hero-foot{flex-direction:column;align-items:start}
+  .state{flex-direction:column;align-items:start}
+  .row-body{grid-template-columns:1fr;gap:18px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}.rv.pre{transform:none!important}}
+</style>
+
+</head>
+<body>
+<header class="in">
+  <nav aria-label="주요 메뉴">
+    <span class="logo">조하람 · 국어·과학·수학</span>
+    <div class="links"><a href="#r1"><sup>(01)</sup>강의·조교</a><a href="#r2"><sup>(02)</sup>SNS 홍보</a><a href="#r3"><sup>(03)</sup>경험</a></div>
+    <a class="u" href="#contact">연락하기 →</a>
+  </nav>
+  <section class="hero">
+    <h1><span class="ln"><span>국어와 과학을 가르치고,</span></span><span class="ln g"><span>학원의 이야기를 알립니다.</span></span></h1>
+    <div class="hero-foot">
+      <p>중등부터 수능까지 국어와 과학을 함께 가르칩니다. 개념을 정확히 세우고, 학생이 스스로 설명할 수 있을 때까지 질문을 받습니다. 동시에 학원의 수업과 성과를 SNS에 꾸준히 기록합니다.</p>
+      <span class="hint">(스크롤 <i>↓</i>)</span>
+    </div>
+  </section>
+</header>
+
+<main class="band">
+  <div class="in">
+    <div class="eyebrow rv">모르는 것을 편하게 물어볼 수 있는 수업이 <span class="g">가장 좋은 수업입니다.</span></div>
+    <div class="state rv">
+      <h2>교실 안에서는 설명하고,<br>교실 밖에서는 학원을 알립니다.</h2>
+      <a class="u" href="#contact">면접 요청하기 →</a>
+    </div>
+
+    <section class="row rv" id="r1">
+      <div class="row-num">(01)</div>
+      <h3>강의 및 질문 조교</h3>
+      <div class="row-body">
+        <p>정규 수업부터 내신 대비, 질문 조교까지 학년과 목표에 맞춰 진행합니다. 학생이 어디에서 막혔는지 먼저 묻고, 그 지점부터 다시 설명합니다. 개념을 외우게 하기보다 스스로 말로 풀어낼 수 있을 때까지 함께 확인하고, 수업이 끝난 뒤에도 남은 질문이 없도록 꼼꼼하게 챙깁니다.</p>
+        <ul><li>중등 국어</li><li>고등 내신 국어</li><li>수능 국어</li><li>중등 수학</li><li>중등 과학</li><li>고등 통합과학</li><li>주간 테스트 채점</li><li>오답 정리</li><li>클리닉 보조</li><li>과제 관리</li></ul>
+        <span class="tag">(강의 &amp; 조교)</span>
+      </div>
+    </section>
+
+    <section class="row rv" id="r2">
+      <div class="row-num">(02)</div>
+      <h3>학원 SNS 홍보</h3>
+      <div class="row-body">
+        <p>수업 현장을 직접 아는 사람이 학원의 강점을 콘텐츠로 만듭니다. 기획부터 촬영, 편집, 업로드까지 꾸준히 운영하고, 학생과 학부모가 실제로 궁금해하는 수업 분위기와 성과를 솔직하게 보여줍니다. 한 번의 화려한 게시물보다 매주 이어지는 기록으로 학원을 알립니다.</p>
+        <ul><li>인스타그램 운영</li><li>블로그 포스팅</li><li>수업 현장 촬영</li><li>릴스·숏폼 편집</li><li>수강 후기 콘텐츠</li><li>성적 향상 사례 정리</li><li>설명회 홍보</li><li>신규 모집 홍보</li><li>카드뉴스 제작</li><li>월간 운영 리포트</li></ul>
+        <span class="tag">(홍보 &amp; 콘텐츠)</span>
+      </div>
+    </section>
+
+    <section class="row rv" id="r3">
+      <div class="row-num">(03)</div>
+      <h3>준비된 경험</h3>
+      <div class="row-body">
+        <p>고등학교 3년 동안 후배 멘토링과 스터디를 운영하며 다른 사람에게 설명하는 일을 꾸준히 해왔습니다. 동아리 인스타그램 계정을 맡아 활동을 기록하고 게시물을 만들었고, 그 경험을 학원 홍보에도 그대로 이어가려 합니다. 12월 1일부터 2027년 2월까지 주 6일 근무할 수 있습니다.</p>
+        <ul><li>교내 국어 멘토링</li><li>과학 탐구 동아리 부장</li><li>동아리 인스타그램 운영</li><li>학급 스터디 운영</li><li>모의고사 오답 해설</li><li>한글·엑셀</li><li>미리캔버스</li><li>캡컷 영상 편집</li></ul>
+        <span class="tag">(경험 &amp; 활동)</span>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="contact" id="contact">
+  <div class="in">
+    <h2><span class="ln"><span class="rv">면접 연락,</span></span><span class="ln g"><span class="rv">기다리고 있겠습니다.</span></span></h2>
+    <div class="c-row">
+      <span class="v" id="phone">010-0000-0000</span>
+      <button type="button" id="copy">번호 복사</button>
+      <span>카카오톡 ID example_id</span>
+      <span id="copied" aria-live="polite"></span>
+    </div>
+    <div class="foot"><span>조하람 · 국어·과학·수학 조교 / 학원 SNS 홍보</span><span>마지막 업데이트 2026.11</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // 아래쪽 요소는 화면에 들어올 때 살짝 올라오며 자리잡음 (내용은 항상 보이는 상태)
+  var els=document.querySelectorAll(".rv");
+  if(!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){(e.target._rv||e.target).classList.remove("pre");io.unobserve(e.target)}})},{threshold:0,rootMargin:"0px 0px -6% 0px"});
+  els.forEach(function(el){
+    if(el.getBoundingClientRect().top>innerHeight){
+      if(el.matches(".contact .ln.g .rv")) el.style.transitionDelay="120ms";
+      el.classList.add("pre");
+      // 줄 마스크(.ln) 안의 글자는 잘려 있어 감지가 안 되므로 바깥 줄을 대신 감시
+      var w=el.parentNode.classList.contains("ln")?el.parentNode:el; w._rv=el; io.observe(w);
+    }
+  });
+})();
+(function(){
+  var out=document.getElementById("copied"), num=document.getElementById("phone");
+  document.getElementById("copy").addEventListener("click",function(){
+    var fallback=function(){var r=document.createRange();r.selectNodeContents(num);var s=getSelection();s.removeAllRanges();s.addRange(r);out.textContent="번호를 선택했어요. 복사해 주세요"};
+    try{navigator.clipboard.writeText(num.textContent).then(function(){out.textContent="복사했습니다"},fallback)}catch(e){fallback()}
+  });
+})();
+</script>
+
+</body>
+</html>
