@@ -91,7 +91,14 @@ button:focus-visible{outline:2px solid #fff;outline-offset:3px}
 .row h3{transition:transform .35s ease}
 .row:hover h3{transform:translateX(8px)}
 
+/* 히어로 타이핑: 최고의 (갓성비) 퍼포먼스 — 한글 자모 단위로 쳤다 지웠다 반복 */
+.ty{white-space:nowrap}
+.ty i{display:inline-block;width:.045em;height:.82em;margin-left:.07em;vertical-align:-.06em;background:currentColor;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+br.m{display:none}
 @media (max-width:760px){
+  br.m{display:inline}
   nav{grid-template-columns:1fr auto;height:64px}
   .links{display:none}
   nav .u{font-size:15px;padding-block:10px 3px}
@@ -114,7 +121,7 @@ button:focus-visible{outline:2px solid #fff;outline-offset:3px}
     <a class="u" href="#contact">연락하기 →</a>
   </nav>
   <section class="hero">
-    <h1><span class="ln"><span>명실상부 최고의 퍼포먼스</span></span><span class="ln g"><span>조하람입니다.</span></span></h1>
+    <h1><span class="ln"><span>명실상부 최고의<br class="m"><span class="ty" aria-hidden="true"></span><span class="sr"> (갓성비)</span> 퍼포먼스</span></span><span class="ln g"><span>조하람입니다.</span></span></h1>
     <div class="hero-foot">
       <p>학원 내부와 외부를 넘나들며 학생과 학원 사이를 연결하는 <br>계획적이고 치밀한 MASTER PLAN의 실현</p>
       <span class="hint">(스크롤 <i>↓</i>)</span>
@@ -144,7 +151,7 @@ button:focus-visible{outline:2px solid #fff;outline-offset:3px}
       <div class="row-num">(02)</div>
       <h3>가능한 업무</h3>
       <div class="row-body">
-        <p>· 중등 국어, 중등 과학, 고등 통합과학 개념, 수능 국어 기초 특강 진행<br>· 중등 과정 및 고등 국어, 통합과학 과목 질의응답 조교 및 재원생 관리<br>· 학원 블로그 게시물 제작 및 게시용 포스터 제작<br>· 학원 SNS(인스타그램 및 유튜브) 홍보 영상 제작</p>
+        <p>· 중등 국어, 중등 과학, 고등 통합과학 개념, 수능 국어 기초 특강 진행<br>· 중등 과정 및 고등 국어, 통합과학 과목 질의응답 조교 및 재원생 관리<br>· 학원 블로그 게시물 제작 및 게시용 포스터 제작<br>· 학원 SNS(인스타그램 및 유튜브) 게시 영상 제작</p>
         <ul><li>인스타그램 운영</li><li>블로그 포스팅</li><li>수업 현장 촬영</li><li>릴스·숏폼 편집</li><li>수강 후기 콘텐츠</li><li>성적 향상 사례 정리</li><li>설명회 홍보</li><li>신규 모집 홍보</li><li>카드뉴스 제작</li><li>월간 운영 리포트</li></ul>
         <span class="tag">(홍보 &amp; 콘텐츠)</span>
       </div>
@@ -176,6 +183,24 @@ button:focus-visible{outline:2px solid #fff;outline-offset:3px}
 </footer>
 
 <script>
+(function(){
+  // ( ) 가 생기고 → ㄱ 가 갓 → ㅅ 서 성 → ㅂ 비 순으로 한글 자모 단위 타이핑, 잠시 멈춘 뒤 거꾸로 지우고 반복
+  var el=document.querySelector(".ty"); if(!el) return;
+  var typed=["","ㄱ","가","갓","갓ㅅ","갓서","갓성","갓성ㅂ","갓성비"];
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches){el.textContent=" (갓성비)";return}
+  var steps=[];
+  steps.push({t:null,d:1400});                                   // 히어로 등장 애니메이션 끝날 때까지
+  typed.forEach(function(x,i){steps.push({t:x,d:i?150:450})});
+  steps[steps.length-1].d=2600;                                // 완성 후 멈춤
+  for(var i=typed.length-2;i>=0;i--) steps.push({t:typed[i],d:70});
+  steps.push({t:null,d:1200});                                   // 괄호까지 지우고 쉬기
+  var k=0;
+  (function next(){
+    var st=steps[k]; el.innerHTML=st.t==null?"":" ("+st.t+"<i></i>)";   // 깜박이는 커서는 괄호 안쪽
+    k=(k+1)%steps.length; if(k===0) k=1;                     // 두 번째 바퀴부터는 첫 대기 생략
+    setTimeout(next,st.d);
+  })();
+})();
 (function(){
   // 아래쪽 요소는 화면에 들어올 때 살짝 올라오며 자리잡음 (내용은 항상 보이는 상태)
   var els=document.querySelectorAll(".rv");
