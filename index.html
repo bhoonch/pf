@@ -57,6 +57,8 @@ nav .u{justify-self:end;font-size:21px;letter-spacing:-.04em}
 .row-body{display:grid;grid-template-columns:minmax(0,58.8%) minmax(0,1fr) auto;margin-top:clamp(24px,2.6vw,38px);align-items:start}
 .row-body p{max-width:680px;font-size:clamp(15px,1.32vw,19px);line-height:1.42;letter-spacing:-.03em;color:var(--text)}
 .row-body ul{list-style:none;margin:0;padding:0;font-family:Pretendard,var(--f);font-size:clamp(14px,1.11vw,16px);line-height:1.35;letter-spacing:-.035em;color:#444}
+/* 목록 아래 한 줄 띄운 링크 */
+.row-body li.more{margin-top:1.35em;column-span:all;break-inside:avoid}
 /* 문장 속 로고: 로고 x-height ≈ 0.6em, 기준선 맞춤(-.216em)에서 한글 시각 중심에 맞게 .114em 더 내림 */
 .wm{height:1.07em;width:auto;vertical-align:-.33em;margin:0 .12em 0 .04em;opacity:.72}
 .tag{font-size:clamp(14px,1.18vw,17px);letter-spacing:-.035em;white-space:nowrap;color:var(--text)}
@@ -133,7 +135,7 @@ button:focus-visible{outline:2px solid #fff;outline-offset:3px}
       <h3>소개</h3>
       <div class="row-body">
         <p>안녕하십니까! 수능 국어 콘텐츠를 제작하는 팀 <img class="wm" src="logo.png" alt="isotropy">를 준비중에 있는 조하람입니다. 저는 2024년 과학중점학교 세마고등학교에 입학한 후, 통합과학에서 좋은 내신 성적을 거두어 2025년 과학중점반 물리실험반에 입반하였습니다. <br><br>현재 함께해주실 원장님을 찾고 있습니다. 학생들의 질의응답과 학습을 돕는 조교 역할은 물론, 학원 홍보 전반까지 책임지고 맡아 학원 운영에 실질적인 도움을 드리고자 합니다.</p>
-        <ul><li>2017~2022&nbsp;&nbsp;학급 임원 당선</li><li>2017&nbsp;&nbsp;과학탐구대회 기계공학 부문 최우수상</li><li>2021&nbsp;&nbsp;경기미래영재교육원 심화과정 수료</li><li>2023&nbsp;&nbsp;학생자치회 전교 부회장 당선</li><li>2025&nbsp;&nbsp;교육부 주최 과학동아리 학생과학탐구올림픽 동상</li><li>2025&nbsp;&nbsp;과학중점학교 융합형 과제 연구 진행</li></ul>
+        <ul><li>2017~2022&nbsp;&nbsp;학급 임원 당선</li><li>2017&nbsp;&nbsp;과학탐구대회 기계공학 부문 최우수상</li><li>2021&nbsp;&nbsp;경기미래영재교육원 심화과정 수료</li><li>2023&nbsp;&nbsp;학생자치회 전교 부회장 당선</li><li>2025&nbsp;&nbsp;교육부 주최 과학동아리 학생과학탐구올림픽 동상</li><li>2025&nbsp;&nbsp;과학중점학교 융합형 과제 연구 진행</li><li class="more"><a class="u" href="score-2026-06.png" target="_blank" rel="noopener">6월 모의고사 성적표 확인하기 →</a></li></ul>
         <span class="tag">(약력)</span>
       </div>
     </section>
