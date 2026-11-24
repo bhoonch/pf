@@ -93,8 +93,10 @@ button:focus-visible{outline:2px solid #fff;outline-offset:3px}
 
 /* 히어로 타이핑: 최고의 (갓성비) 퍼포먼스 — 한글 자모 단위로 쳤다 지웠다 반복 */
 .ty{white-space:nowrap}
-.ty i{display:inline-block;width:.045em;height:.82em;margin-left:.07em;vertical-align:-.06em;background:currentColor;animation:blink 1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
+/* 커서: 한글 글자 높이(약 1em)에 맞춘 얇은 세로선. 치는 동안은 계속 보이고, 멈춰 있을 때만 부드럽게 깜박임 */
+.ty i{display:inline-block;width:max(2px,.035em);height:1em;margin:0 .05em 0 .12em;vertical-align:-.14em;background:currentColor;border-radius:1px;animation:blink 1.06s ease-in-out infinite}
+.ty.typing i{animation:none}
+@keyframes blink{0%,45%{opacity:1}55%,95%{opacity:0}100%{opacity:1}}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 br.m{display:none}
 @media (max-width:760px){
@@ -184,22 +186,28 @@ br.m{display:none}
 
 <script>
 (function(){
-  // ( ) 가 생기고 → ㄱ 가 갓 → ㅅ 서 성 → ㅂ 비 순으로 한글 자모 단위 타이핑, 잠시 멈춘 뒤 거꾸로 지우고 반복
+  // 신호(ty:start)를 받으면: ( ) 생성 → ㄱ 가 갓 → ㅅ 서 성 → ㅂ 비 자모 타이핑 → 10초 유지 → 지움 → 신호(ty:end) 보냄
+  // ty:end 를 받으면 3초 뒤 다시 ty:start. 첫 로드도 3초 뒤 시작
   var el=document.querySelector(".ty"); if(!el) return;
   var typed=["","ㄱ","가","갓","갓ㅅ","갓서","갓성","갓성ㅂ","갓성비"];
   if(matchMedia("(prefers-reduced-motion: reduce)").matches){el.textContent=" (갓성비)";return}
-  var steps=[];
-  steps.push({t:null,d:1400});                                   // 히어로 등장 애니메이션 끝날 때까지
-  typed.forEach(function(x,i){steps.push({t:x,d:i?150:450})});
-  steps[steps.length-1].d=2600;                                // 완성 후 멈춤
-  for(var i=typed.length-2;i>=0;i--) steps.push({t:typed[i],d:70});
-  steps.push({t:null,d:1200});                                   // 괄호까지 지우고 쉬기
-  var k=0;
-  (function next(){
-    var st=steps[k]; el.innerHTML=st.t==null?"":" ("+st.t+"<i></i>)";   // 깜박이는 커서는 괄호 안쪽
-    k=(k+1)%steps.length; if(k===0) k=1;                     // 두 번째 바퀴부터는 첫 대기 생략
-    setTimeout(next,st.d);
-  })();
+  var WAIT=3000, HOLD=10000, TYPE=150, OPEN=450, DEL=70;
+  function show(t,typing){el.innerHTML=t==null?"":" ("+t+"<i></i>)";el.classList.toggle("typing",!!typing)}
+  function run(steps,done){
+    (function next(n){
+      if(n===steps.length) return done();
+      show(steps[n].t,steps[n].typing); setTimeout(function(){next(n+1)},steps[n].d);
+    })(0);
+  }
+  el.addEventListener("ty:start",function(){
+    var steps=typed.map(function(x,i){return {t:x,d:i?TYPE:OPEN,typing:true}});
+    steps[steps.length-1]={t:typed[typed.length-1],d:HOLD,typing:false};       // 완성 후 10초 (커서 깜박임)
+    for(var i=typed.length-2;i>=0;i--) steps.push({t:typed[i],d:DEL,typing:true});
+    steps.push({t:null,d:0});
+    run(steps,function(){el.dispatchEvent(new Event("ty:end"))});
+  });
+  el.addEventListener("ty:end",function(){setTimeout(function(){el.dispatchEvent(new Event("ty:start"))},WAIT)});
+  setTimeout(function(){el.dispatchEvent(new Event("ty:start"))},WAIT);
 })();
 (function(){
   // 아래쪽 요소는 화면에 들어올 때 살짝 올라오며 자리잡음 (내용은 항상 보이는 상태)
