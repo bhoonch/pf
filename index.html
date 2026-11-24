@@ -94,7 +94,7 @@ button:focus-visible{outline:2px solid #fff;outline-offset:3px}
 /* 히어로 타이핑: 최고의 (갓성비) 퍼포먼스 — 한글 자모 단위로 쳤다 지웠다 반복 */
 .ty{white-space:nowrap}
 /* 커서: 한글 글자 높이(약 1em)에 맞춘 얇은 세로선. 치는 동안은 계속 보이고, 멈춰 있을 때만 부드럽게 깜박임 */
-.ty i{display:inline-block;width:max(2px,.035em);height:1em;margin:0 .05em 0 .12em;vertical-align:-.14em;background:currentColor;border-radius:1px;animation:blink 1.06s ease-in-out infinite}
+.ty i{display:inline-block;width:max(2px,.035em);height:1em;margin:0 .04em 0 .1em;vertical-align:-.14em;background:currentColor;border-radius:1px;animation:blink 1.06s ease-in-out infinite}
 .ty.typing i{animation:none}
 @keyframes blink{0%,45%{opacity:1}55%,95%{opacity:0}100%{opacity:1}}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -192,7 +192,8 @@ br.m{display:none}
   var typed=["","ㄱ","가","갓","갓ㅅ","갓서","갓성","갓성ㅂ","갓성비"];
   if(matchMedia("(prefers-reduced-motion: reduce)").matches){el.textContent=" (갓성비)";return}
   var WAIT=3000, HOLD=10000, TYPE=150, OPEN=450, DEL=70;
-  function show(t,typing){el.innerHTML=t==null?"":" ("+t+"<i></i>)";el.classList.toggle("typing",!!typing)}
+  // ( ) → ( ㄱ) → ( 갓성비): 여는 괄호 뒤 한 칸 띄우고 시작
+  function show(t,typing){el.innerHTML=t==null?"":" ("+(t?" "+t:"")+"<i></i>)";el.classList.toggle("typing",!!typing)}
   function run(steps,done){
     (function next(n){
       if(n===steps.length) return done();
