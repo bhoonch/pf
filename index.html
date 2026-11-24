@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <title>조하람 조교 포트폴리오</title>
 <style>
 /* Layout: 레퍼런스(1440px 기준) 실측값 그대로. 밝은 히어로(높이 930) → 회색 밴드(문구 + (01)(02)(03) 행) → 연락처.
@@ -25,8 +26,8 @@ h1,h2,h3,p{margin:0;font-weight:400}
 
 /* 상단바: 레퍼런스 20px → +1 */
 nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:80px}
-.logo{justify-self:start;background:#111;color:#fff;font-size:15px;line-height:1;padding:6px 8px;border-radius:4px;letter-spacing:-.02em}
-.links{display:flex;gap:35px;font-size:21px;letter-spacing:-.04em}
+.logo{justify-self:start;display:block;height:26px;width:auto}
+.links{display:flex;gap:35px;font-size:19px;letter-spacing:-.04em}
 .links a{text-decoration:none}
 .links sup{font-size:9px;letter-spacing:0;margin-right:4px;vertical-align:10px}
 .links a:hover,.links a:focus-visible{text-decoration:underline;outline:none}
@@ -34,10 +35,11 @@ nav .u{justify-self:end;font-size:21px;letter-spacing:-.04em}
 
 /* 히어로 */
 .hero{min-height:clamp(520px,59vw,850px);display:flex;flex-direction:column;padding-top:clamp(56px,16.1vw,232px);padding-bottom:clamp(24px,2.8vw,40px)}
-.hero h1{font-weight:700;font-size:clamp(30px,5vw,72px);line-height:1;letter-spacing:-.055em;color:var(--ink)}
+.hero h1{font-weight:400;font-size:clamp(30px,5vw,72px);line-height:1.05;letter-spacing:-.055em;color:var(--ink)}
 .hero h1 .g{color:var(--soft)}
 .hero-foot{margin-top:auto;padding-top:48px;display:flex;justify-content:space-between;align-items:end;gap:20px}
-.hero-foot p{max-width:770px;font-size:clamp(16px,1.67vw,24px);line-height:1.29;letter-spacing:-.035em;color:#1e1e1e}
+/* 레퍼런스 실측(1440 기준): 24px · 줄간 1.29 · 폭 770 · 3줄, Regular, 촘촘한 자간 */
+.hero-foot p{max-width:770px;font-family:Pretendard,var(--f);font-weight:400;font-size:clamp(16px,1.67vw,24px);line-height:1.29;letter-spacing:-.04em;color:#1e1e1e}
 .hint{font-size:16px;letter-spacing:-.03em;white-space:nowrap}
 
 /* 회색 밴드 */
@@ -55,6 +57,8 @@ nav .u{justify-self:end;font-size:21px;letter-spacing:-.04em}
 .row-body{display:grid;grid-template-columns:minmax(0,58.8%) minmax(0,1fr) auto;margin-top:clamp(24px,2.6vw,38px);align-items:start}
 .row-body p{max-width:680px;font-size:clamp(15px,1.32vw,19px);line-height:1.42;letter-spacing:-.03em;color:var(--text)}
 .row-body ul{list-style:none;margin:0;padding:0;font-size:clamp(14px,1.11vw,16px);line-height:1.35;letter-spacing:-.035em;color:#444}
+/* 문장 속 로고: 로고 x-height ≈ 0.6em, 기준선 맞춤(-.216em)에서 한글 시각 중심에 맞게 .114em 더 내림 */
+.wm{height:1.07em;width:auto;vertical-align:-.33em;margin:0 .12em 0 .04em;opacity:.72}
 .tag{font-size:clamp(14px,1.18vw,17px);letter-spacing:-.035em;white-space:nowrap;color:var(--text)}
 
 /* 연락 */
@@ -103,12 +107,12 @@ button:focus-visible{outline:2px solid #fff;outline-offset:3px}
 <body>
 <header class="in">
   <nav aria-label="주요 메뉴">
-    <span class="logo">조하람 · 국어·과학·수학</span>
-    <div class="links"><a href="#r1"><sup>(01)</sup>강의·조교</a><a href="#r2"><sup>(02)</sup>SNS 홍보</a><a href="#r3"><sup>(03)</sup>경험</a></div>
+    <img class="logo" src="logo.png" alt="isotropy" width="102" height="26">
+    <div class="links"><a href="#r1"><sup>(01)</sup>소개</a><a href="#r2"><sup>(02)</sup>가능한 업무</a><a href="#r3"><sup>(03)</sup>SNS 홍보의 필요성</a></div>
     <a class="u" href="#contact">연락하기 →</a>
   </nav>
   <section class="hero">
-    <h1><span class="ln"><span>국어와 과학을 가르치고,</span></span><span class="ln g"><span>학원의 이야기를 알립니다.</span></span></h1>
+    <h1><span class="ln"><span>명실상부 최고의 퍼포먼스</span></span><span class="ln g"><span>조하람입니다.</span></span></h1>
     <div class="hero-foot">
       <p>중등부터 수능까지 국어와 과학을 함께 가르칩니다. 개념을 정확히 세우고, 학생이 스스로 설명할 수 있을 때까지 질문을 받습니다. 동시에 학원의 수업과 성과를 SNS에 꾸준히 기록합니다.</p>
       <span class="hint">(스크롤 <i>↓</i>)</span>
@@ -126,9 +130,9 @@ button:focus-visible{outline:2px solid #fff;outline-offset:3px}
 
     <section class="row rv" id="r1">
       <div class="row-num">(01)</div>
-      <h3>강의 및 질문 조교</h3>
+      <h3>소개</h3>
       <div class="row-body">
-        <p>정규 수업부터 내신 대비, 질문 조교까지 학년과 목표에 맞춰 진행합니다. 학생이 어디에서 막혔는지 먼저 묻고, 그 지점부터 다시 설명합니다. 개념을 외우게 하기보다 스스로 말로 풀어낼 수 있을 때까지 함께 확인하고, 수업이 끝난 뒤에도 남은 질문이 없도록 꼼꼼하게 챙깁니다.</p>
+        <p>안녕하십니까! 수능 국어 콘텐츠를 제작하는 팀 <img class="wm" src="logo.png" alt="isotropy">를 준비중에 있는 조하람입니다. 저는 2024년 과학중점학교 세마고등학교에 입학한 후, 통합과학에서 좋은 내신 성적을 거두어 2025년 과학중점반 물리실험반에 입반하였습니다. 2026년에는 저의 강점을 살려 새롭게 바뀐 중고등 교육과정과 통합형 수능에 맞춘 사교육 문항을 제작중에 있습니다.</p>
         <ul><li>중등 국어</li><li>고등 내신 국어</li><li>수능 국어</li><li>중등 수학</li><li>중등 과학</li><li>고등 통합과학</li><li>주간 테스트 채점</li><li>오답 정리</li><li>클리닉 보조</li><li>과제 관리</li></ul>
         <span class="tag">(강의 &amp; 조교)</span>
       </div>
@@ -136,9 +140,9 @@ button:focus-visible{outline:2px solid #fff;outline-offset:3px}
 
     <section class="row rv" id="r2">
       <div class="row-num">(02)</div>
-      <h3>학원 SNS 홍보</h3>
+      <h3>가능한 업무</h3>
       <div class="row-body">
-        <p>수업 현장을 직접 아는 사람이 학원의 강점을 콘텐츠로 만듭니다. 기획부터 촬영, 편집, 업로드까지 꾸준히 운영하고, 학생과 학부모가 실제로 궁금해하는 수업 분위기와 성과를 솔직하게 보여줍니다. 한 번의 화려한 게시물보다 매주 이어지는 기록으로 학원을 알립니다.</p>
+        <p>중등 국어, 중등 과학, 고등 통합과학 개념, 고등 내신 및 수능 기초 특강 수업 진행<br>중등 과정 및 고등 국어, 통합과학 과목 질문 조교 및 재원생 관리<br>학원 SNS(인스타그램 및 유튜브) 홍보<br>학원 블로그 게시물 제작 및 게시용 포스터 디자인</p>
         <ul><li>인스타그램 운영</li><li>블로그 포스팅</li><li>수업 현장 촬영</li><li>릴스·숏폼 편집</li><li>수강 후기 콘텐츠</li><li>성적 향상 사례 정리</li><li>설명회 홍보</li><li>신규 모집 홍보</li><li>카드뉴스 제작</li><li>월간 운영 리포트</li></ul>
         <span class="tag">(홍보 &amp; 콘텐츠)</span>
       </div>
@@ -146,7 +150,7 @@ button:focus-visible{outline:2px solid #fff;outline-offset:3px}
 
     <section class="row rv" id="r3">
       <div class="row-num">(03)</div>
-      <h3>준비된 경험</h3>
+      <h3>SNS 홍보의 필요성</h3>
       <div class="row-body">
         <p>고등학교 3년 동안 후배 멘토링과 스터디를 운영하며 다른 사람에게 설명하는 일을 꾸준히 해왔습니다. 동아리 인스타그램 계정을 맡아 활동을 기록하고 게시물을 만들었고, 그 경험을 학원 홍보에도 그대로 이어가려 합니다. 12월 1일부터 2027년 2월까지 주 6일 근무할 수 있습니다.</p>
         <ul><li>교내 국어 멘토링</li><li>과학 탐구 동아리 부장</li><li>동아리 인스타그램 운영</li><li>학급 스터디 운영</li><li>모의고사 오답 해설</li><li>한글·엑셀</li><li>미리캔버스</li><li>캡컷 영상 편집</li></ul>
